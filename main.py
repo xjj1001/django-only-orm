@@ -4,7 +4,7 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_orm.settings")
 
 from django_orm import migrate, make_migrations
-from django_orm.app01 import models
+from django_orm.app01.models import User, Record
 # from demox import do_demo
 
 import time
@@ -15,7 +15,7 @@ import threading
 def update():
     while True:
         try:
-            obj = models.User.objects.first()
+            obj = User.objects.first()
             obj.name = obj.name + 1
             obj.save()
             print("update:", object)
@@ -29,7 +29,7 @@ def update():
 def create():
     while True:
         try:
-            obj = models.User.objects.create(name=random.randint(0, 100))
+            obj = User.objects.create(name=random.randint(0, 100))
             print("create:", obj)
             # time.sleep(random.random() * 0.5)
         except Exception as err:
@@ -40,7 +40,7 @@ def create():
 def select():
     while True:
         try:
-            print("select:", models.User.objects.all()[:5])
+            print("select:", User.objects.all()[:5])
             # time.sleep(0.5)
         except Exception as err:
             print("select:", "-" * 40)
@@ -51,7 +51,7 @@ def select():
 def delete():
     while True:
         try:
-            obj = models.User.objects.first()
+            obj = User.objects.first()
             print("delete:", obj)
             obj.delete()
             # time.sleep(0.5)
@@ -65,11 +65,14 @@ if __name__ == '__main__':
     # do_demo()
     # make_migrations("app01")
     # migrate("app01")
-    # u = models.User.objects.create(name=2)
+    # u = User.objects.create(name=111)
     # u.save()
-    # print(len(models.User.objects.all()))
-    query = models.User.objects.filter()
-    print(query)
+    # u = User2.objects.create(name=222)
+    # u.save()
+    # print(len(User.objects.all()))
+    # User.Meta.db_table = 'user2'
+    Record._meta.db_table = 'user_record_20200606'  # 分表查询指定表名
+    query = Record.objects.filter()
     for i in query:
         print(i.name)
     # # threading.Thread(target=update).start()
