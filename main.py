@@ -1,11 +1,9 @@
 import os
 
-# 行是必须的
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_orm.settings")
 
 from django_orm import migrate, make_migrations
-from django_orm.app01.models import User, Record
-# from demox import do_demo
+from django_orm.app1.models import User, Record
 
 import time
 import random
@@ -62,17 +60,14 @@ def delete():
 
 
 if __name__ == '__main__':
-    # do_demo()
-    # make_migrations("app01")
-    # migrate("app01")
+    # make_migrations("app1")
+    # migrate("app1")
     # u = User.objects.create(name=111)
     # u.save()
-    # u = User2.objects.create(name=222)
-    # u.save()
     # print(len(User.objects.all()))
-    # User.Meta.db_table = 'user2'
-    Record._meta.db_table = 'user_record_20200606'  # 分表查询指定表名
-    query = Record.objects.filter()
+    # Record._meta.db_table = Record._meta.db_table + '_20200606'  # 分表查询指定表名
+    # query = Record.objects.filter()
+    query = User.objects.filter()
     for i in query:
         print(i.name)
     # # threading.Thread(target=update).start()

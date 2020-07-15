@@ -3,7 +3,6 @@ from django.conf import settings
 from django.core.management import call_command
 
 apps.populate(settings.INSTALLED_APPS)
-print("----------apps.populate----------")
 
 
 def migrate(app_name: str):

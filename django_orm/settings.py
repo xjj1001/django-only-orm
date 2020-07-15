@@ -20,10 +20,6 @@ import sys
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, ".."))
 
-# print(__file__)
-# print(BASE_DIR)
-# print(os.path.join(BASE_DIR, 'db.sqlite3'))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -36,15 +32,13 @@ DEBUG = True
 
 
 # Application definition
-
 INSTALLED_APPS = [
-    'django_orm.app01',
+    'django_orm.app1',
 ]
 
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
